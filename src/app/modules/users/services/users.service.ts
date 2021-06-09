@@ -13,18 +13,18 @@ export class UsersService {
   }
 
   getOne(data: any): Promise<any> {
-    return this.http.get(`localhost:3000/users/${data?.id}`).toPromise();
+    return this.http.get(`http://localhost:3000/users/${data?.id}`).toPromise();
   }
   
   create(data: any): Promise<any> {
-    return this.http.post('localhost:3000/users', data).toPromise();
+    return this.http.post('http://localhost:3000/users', data).toPromise();
   }
 
-  edit(data: any): Promise<any> {
-    return this.http.put(`localhost:3000/users/${data.id}`, data).toPromise();
+  edit(id: any, data: any): Promise<any> {
+    return this.http.put(`http://localhost:3000/users/${id}`, data).toPromise();
   }
 
   delete(data: any): Promise<any> {
-    return this.http.delete(`localhost:3000/users/${data.id}`).toPromise();
+    return this.http.delete(`http://localhost:3000/users/${data.id}`).toPromise();
   }
 }

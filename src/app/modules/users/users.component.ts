@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UsersService } from './services/users.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { UsersService } from './services/users.service';
 export class UsersComponent implements OnInit {
 
   dataList: any = [];
-  constructor(public usersService:UsersService) { }
+  constructor(public usersService:UsersService, public router:Router) { }
 
   ngOnInit(): void {
     this.allUsers();
@@ -20,5 +21,23 @@ export class UsersComponent implements OnInit {
       this.dataList = res;
     });
   }
+
+  editUser(id: any): void {
+    this.router.navigateByUrl(`usuarios/${id}`)
+  }
+
+  deleteItem(id: any): void {
+    this.usersService
+      .delete({id: id})
+      .then(() => {
+        this.allUsers()
+      })
+      .catch((rej: any) => {
+      })
+      .finally(() => {
+      });
+  }
+
+
 
 }
